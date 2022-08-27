@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="flex flex-col justify-center items-center pt-10">
-      <h1 className="text-3xl font-thin">TodoList</h1>
+      <h1 className="text-3xl font-thin">Henry is awesome!!!</h1>
       <ListHead onCreateItem={handleCreateItem} />
       <ListContainer todoList={todoList} onDeleteItem={handleDeleteItem} />
     </div>
