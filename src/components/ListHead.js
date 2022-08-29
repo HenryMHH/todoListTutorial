@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from "./Button"
 
 export default function ListHead({ onCreateItem }) {
   const [value, setValue] = useState();
@@ -10,7 +11,7 @@ export default function ListHead({ onCreateItem }) {
         onInput={(e) => setValue(e.target.value)}
         value={value}
       />
-      <button onClick={() => onCreateItem(value)}>Add</button>
+      <Button className="mr-3 p-4 bg-blue-700 text-white hover:bg-blue-500" onClick={() => onCreateItem(value)}>Add</Button>
     </div>
   );
 }
