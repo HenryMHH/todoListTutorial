@@ -22,11 +22,12 @@ function App() {
   }
 
   function handleCompleteItem(id) {
+      const newCompletelist = [...todoList];
+      const completeItem = newCompletelist.find((item) => item.id === id);
+      console.log(completeItem)   //undefind
 
-    
-      setStyle("w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in line-through")
+      // setStyle("w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in line-through")
 
-    
 
 
   }
