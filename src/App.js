@@ -1,18 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
-import { v4 as uuid } from 'uuid';
-import ListContainer from './components/ListContainer';
-import ListHead from './components/ListHead';
+import { useEffect, useRef, useState } from "react";
+import { v4 as uuid } from "uuid";
+import ListContainer from "./components/ListContainer";
+import ListHead from "./components/ListHead";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [style, setStyle] = useState(
-    'w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in'
+    "w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in"
   );
   const ref = useRef(0);
 
   function handleCreateItem(text) {
     setTodoList(
-      (preValue) => (preValue = [...preValue, { id: uuid(), message: text }])
+      (preValue) =>
+        (preValue = [
+          ...preValue,
+          { id: uuid(), message: text, isCompleted: false },
+        ])
     );
   }
 
@@ -25,12 +29,18 @@ function App() {
 
   function handleCompleteItem(id) {
     const newCompletelist = [...todoList];
+    // console.log(newCompletelist);
     /**
      * TODO: 這邊應該要用findIndex去撈該id的index
      */
     const completeItem = newCompletelist.find((item) => item.id === id);
-    console.log(completeItem); //undefind
+    console.log(completeItem.isCompleted); //false
 
+    if (completeItem.isCompleted) {
+      setStyle(
+        "w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in line-through"
+      );
+    }
     /**
      * TODO: 你會需要在todoList裡面新增一個屬性控制該item在render的時候需不需要加上line-through的className
      *
@@ -48,10 +58,10 @@ function App() {
   useEffect(() => {
     if (todoList.length === 0) return;
     if (todoList.length > ref.current) {
-      alert('新增成功');
+      alert("新增成功");
     }
     if (todoList.length < ref.current) {
-      alert('刪除成功');
+      alert("刪除成功");
     }
 
     ref.current = todoList.length;

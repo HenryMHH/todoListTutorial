@@ -1,5 +1,5 @@
-import React from 'react';
-import Button from './Button';
+import React from "react";
+import Button from "./Button";
 
 export default function ListContainer({
   todoList,
@@ -22,7 +22,7 @@ export default function ListContainer({
                  */}
                 <Button
                   className="mr-3 bg-green-700 text-white "
-                  onClick={onCompleteItem}
+                  onClick={() => onCompleteItem(item.id)}
                 >
                   完成
                 </Button>
