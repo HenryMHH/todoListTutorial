@@ -5,7 +5,9 @@ import ListHead from './components/ListHead';
 
 function App() {
   const [todoList, setTodoList] = useState([]);
-  const [style, setStyle] = useState("w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in")
+  const [style, setStyle] = useState(
+    'w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in'
+  );
   const ref = useRef(0);
 
   function handleCreateItem(text) {
@@ -22,14 +24,25 @@ function App() {
   }
 
   function handleCompleteItem(id) {
-      const newCompletelist = [...todoList];
-      const completeItem = newCompletelist.find((item) => item.id === id);
-      console.log(completeItem)   //undefind
+    const newCompletelist = [...todoList];
+    /**
+     * TODO: 這邊應該要用findIndex去撈該id的index
+     */
+    const completeItem = newCompletelist.find((item) => item.id === id);
+    console.log(completeItem); //undefind
 
-      // setStyle("w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in line-through")
-
-
-
+    /**
+     * TODO: 你會需要在todoList裡面新增一個屬性控制該item在render的時候需不需要加上line-through的className
+     *
+     * for example:
+     *  目前的todoList item
+     *     {id:uuid(), message: text }
+     *  預期會變成
+     *     {id:uuid(), message: text, isCompleted: true or false }
+     *
+     * 關於如何使用tailwind css加上line-through的用法可以參考：
+     * https://tailwindcss.com/docs/text-decoration#setting-the-text-decoration
+     */
   }
 
   useEffect(() => {
@@ -48,7 +61,12 @@ function App() {
     <div className="flex flex-col justify-center items-center pt-10">
       <h1 className="text-3xl font-thin">TodoList</h1>
       <ListHead onCreateItem={handleCreateItem} />
-      <ListContainer todoList={todoList} onDeleteItem={handleDeleteItem} onCompleteItem={handleCompleteItem} style={style}/>
+      <ListContainer
+        todoList={todoList}
+        onDeleteItem={handleDeleteItem}
+        onCompleteItem={handleCompleteItem}
+        style={style}
+      />
     </div>
   );
 }
