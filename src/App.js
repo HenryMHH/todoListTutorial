@@ -6,7 +6,7 @@ import ListHead from "./components/ListHead";
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [style, setStyle] = useState(
-    "w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in"
+    ""
   );
   const ref = useRef(0);
 
@@ -34,11 +34,12 @@ function App() {
      * TODO: 這邊應該要用findIndex去撈該id的index
      */
     const completeItem = newCompletelist.find((item) => item.id === id);
-    console.log(completeItem.isCompleted); //false
+    // console.log(completeItem.isCompleted); //false
+    
 
     if (completeItem.isCompleted) {
       setStyle(
-        "w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in line-through"
+        "line-through"
       );
     }
     /**

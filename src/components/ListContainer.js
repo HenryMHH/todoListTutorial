@@ -12,9 +12,9 @@ export default function ListContainer({
       <div className="rounded-md border border-black w-[500px] max-w-[95vw] min-h-[300px] py-4 flex flex-col items-center overflow-hidden">
         {todoList.length > 0 &&
           todoList.map((item) => (
-            <div className={style} key={item.id}>
+            <div className="w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in" key={item.id}>
               {/**TODO: 如果item的isCompleted為true，則下方的div tag會有line-through的className */}
-              <div>{item.message}</div>
+              <div className={style}>{item.message}</div>
 
               <div>
                 {/**
