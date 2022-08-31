@@ -33,7 +33,23 @@ function App() {
     const newCompletelist = [...todoList];
     const itemIndex = newCompletelist.findIndex((item) => item.id === id); // 用id撈出index
     newCompletelist[itemIndex].isCompleted = true; // 把該index的element的isCompleted改成true
+    
+    
+    
+    // let isCompletedStatus = newCompletelist[itemIndex].isCompleted
+    // console.log(isCompletedStatus)
+    // if (isCompletedStatus === false) {
+    //   isCompletedStatus = true;
+    // } else if (isCompletedStatus === true) {
+    //   isCompletedStatus = false;
+    // }
+
+    // setTodoList(isCompletedStatus)
+
+
     setTodoList(newCompletelist); // 再把我們修改好的array存回hook
+
+
 
     /**
      * TODO: 你會需要在todoList裡面新增一個屬性控制該item在render的時候需不需要加上line-through的className
