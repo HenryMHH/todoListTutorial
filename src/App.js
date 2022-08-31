@@ -32,17 +32,17 @@ function App() {
   function handleCompleteItem(id) {
     const newCompletelist = [...todoList];
     const itemIndex = newCompletelist.findIndex((item) => item.id === id); // 用id撈出index
-    newCompletelist[itemIndex].isCompleted = true; // 把該index的element的isCompleted改成true
+    // newCompletelist[itemIndex].isCompleted = true; // 把該index的element的isCompleted改成true
     
     
     
     // let isCompletedStatus = newCompletelist[itemIndex].isCompleted
     // console.log(isCompletedStatus)
-    // if (isCompletedStatus === false) {
-    //   isCompletedStatus = true;
-    // } else if (isCompletedStatus === true) {
-    //   isCompletedStatus = false;
-    // }
+    if (newCompletelist[itemIndex].isCompleted  === false) {
+      newCompletelist[itemIndex].isCompleted  = true;
+    } else if (newCompletelist[itemIndex].isCompleted  === true) {
+      newCompletelist[itemIndex].isCompleted  = false;
+    }
 
     // setTodoList(isCompletedStatus)
 
