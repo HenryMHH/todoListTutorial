@@ -1,20 +1,24 @@
-import React from "react";
-import Button from "./Button";
+import React from 'react';
+import Button from './Button';
 
 export default function ListContainer({
   todoList,
   onDeleteItem,
   onCompleteItem,
-  style,
 }) {
   return (
     <div className="mt-5">
       <div className="rounded-md border border-black w-[500px] max-w-[95vw] min-h-[300px] py-4 flex flex-col items-center overflow-hidden">
         {todoList.length > 0 &&
           todoList.map((item) => (
-            <div className="w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in" key={item.id}>
+            <div
+              className="w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in"
+              key={item.id}
+            >
               {/**TODO: 如果item的isCompleted為true，則下方的div tag會有line-through的className */}
-              <div className={style}>{item.message}</div>
+              <div className={item.isCompleted ? 'line-through' : ''}>
+                {item.message}
+              </div>
 
               <div>
                 {/**

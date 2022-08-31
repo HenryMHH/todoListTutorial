@@ -1,13 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { v4 as uuid } from "uuid";
-import ListContainer from "./components/ListContainer";
-import ListHead from "./components/ListHead";
+import { useEffect, useRef, useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import ListContainer from './components/ListContainer';
+import ListHead from './components/ListHead';
 
 function App() {
   const [todoList, setTodoList] = useState([]);
-  const [style, setStyle] = useState(
-    ""
-  );
   const ref = useRef(0);
 
   function handleCreateItem(text) {
@@ -27,21 +24,17 @@ function App() {
     setTodoList(newList);
   }
 
+  /**
+   * 我們有一個todoList array = [{id: 'id', message: 'wish dishes', isCompleted: false},....]
+   * 在點選了某一個item的完成按鈕之後，因為你需要找到你點選的是哪個item，所以你需要用id從array裡面撈出你要的element。
+   * 撈出了element以後，你需要把該element的元素裡面的property isCompleted從false改成true，再塞回該array。
+   */
   function handleCompleteItem(id) {
     const newCompletelist = [...todoList];
-    // console.log(newCompletelist);
-    /**
-     * TODO: 這邊應該要用findIndex去撈該id的index
-     */
-    const completeItem = newCompletelist.find((item) => item.id === id);
-    // console.log(completeItem.isCompleted); //false
-    
+    const itemIndex = newCompletelist.findIndex((item) => item.id === id); // 用id撈出index
+    newCompletelist[itemIndex].isCompleted = true; // 把該index的element的isCompleted改成true
+    setTodoList(newCompletelist); // 再把我們修改好的array存回hook
 
-    if (completeItem.isCompleted) {
-      setStyle(
-        "line-through"
-      );
-    }
     /**
      * TODO: 你會需要在todoList裡面新增一個屬性控制該item在render的時候需不需要加上line-through的className
      *
@@ -59,10 +52,10 @@ function App() {
   useEffect(() => {
     if (todoList.length === 0) return;
     if (todoList.length > ref.current) {
-      alert("新增成功");
+      alert('新增成功');
     }
     if (todoList.length < ref.current) {
-      alert("刪除成功");
+      alert('刪除成功');
     }
 
     ref.current = todoList.length;
@@ -76,7 +69,6 @@ function App() {
         todoList={todoList}
         onDeleteItem={handleDeleteItem}
         onCompleteItem={handleCompleteItem}
-        style={style}
       />
     </div>
   );
