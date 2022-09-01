@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button';
+import Button from '../common/Button';
 
 export default function ListContainer({
   todoList,
@@ -11,37 +11,37 @@ export default function ListContainer({
       <div className="rounded-md border border-black w-[500px] max-w-[95vw] min-h-[300px] py-4 flex flex-col items-center overflow-hidden">
         {todoList.length > 0 &&
           todoList.map((item) => (
-            <div 
+            <div
               className="w-[95%] border-b border-black flex justify-between pb-1 mb-4 animate-slide-in"
               key={item.id}
-              
             >
-              {/**TODO: 如果item的isCompleted為true，則下方的div tag會有line-through的className */}
-              <div onClick={()=> onCompleteItem(item.id)}
-              className={'cursor-pointer ' + (item.isCompleted ? 'line-through' : '')}>
+              <div
+                onClick={() => onCompleteItem(item.id)}
+                className={
+                  'cursor-pointer ' + (item.isCompleted ? 'line-through' : '')
+                }
+              >
                 {item.message}
               </div>
-
               <div>
-                {/**
-                 * TODO: 這個onCompleteItem 少了 id，所以會造成findIndex找不到item
-                 */}
                 <Button
-                  className={item.isCompleted ? 'mr-3 bg-green-700 text-white cursor-default' : 'mr-3 bg-gray-300 text-white cursor-default'}
-                  
+                  className={
+                    item.isCompleted
+                      ? 'mr-3 bg-green-700 text-white cursor-default'
+                      : 'mr-3 bg-gray-300 text-white cursor-default'
+                  }
                 >
                   完成
                 </Button>
-
                 <Button
-                  className={item.isCompleted ? 'mr-3 bg-gray-300 text-white cursor-default' : 'mr-3 bg-green-700 text-white cursor-default'}
-                  
-                  
+                  className={
+                    item.isCompleted
+                      ? 'mr-3 bg-gray-300 text-white cursor-default'
+                      : 'mr-3 bg-green-700 text-white cursor-default'
+                  }
                 >
                   未完成
                 </Button>
-
-
                 <Button
                   className="bg-rose-600 text-white"
                   onClick={() => onDeleteItem(item.id)}
