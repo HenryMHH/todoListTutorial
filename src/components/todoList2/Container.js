@@ -4,26 +4,29 @@ import ButtonList2 from "../common/ButtonList2";
 const Container = ({ todoList, setTodolist, deleteHoldler , handleCompleteItem}) => {
   return (
     <div className="mt-5">
-      <div className="display: flex">
+      <div >
 
         {todoList.length >0 && todoList.map((item)=> (
 
+          <div className="display: flex py-5">
+
 
       <input onClick={() => handleCompleteItem(item.id)}
-      className={item.isCompleted ? 'line-through' : ''}
+      // className={item.isCompleted ? 'line-through' : ''}
       type="checkbox" />
 
-      <div>
+      <div className={item.isCompleted ? 'line-through' : ''}>
       {item.content}
     </div>
       
       <div>
             <ButtonList2 
-          className="bg-rose-600 text-white hover:bg-rose-400">
+          className="bg-rose-600 text-white hover:bg-rose-400"
             onClick = {()=>deleteHoldler(item.id)}
-            >
-            刪除
+            >刪除
            </ButtonList2>
+      </div>
+
       </div>
       
       ))}
