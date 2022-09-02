@@ -18,9 +18,24 @@ export default function TodoList2() {
   const submitHoldler = (text) => {
     setTodoList([
       ...todoList,
-      { content: text, id: uuid(), isCompleted: false },
+      { id: uuid(), content: text, isCompleted: false },
     ]);
   };
+
+  const deleteHoldler = (id) => {
+    setTodoList(todoList.filter((m)=> m.id !== id))
+  }
+
+
+  const handleCompleteItem = (id) => {
+    const newCompletelist = [...todoList];
+    const itemIndex = newCompletelist.findIndex((item) => item.id === id); 
+    if (newCompletelist[itemIndex].isCompleted === false) {
+      newCompletelist[itemIndex].isCompleted = true;
+    } else if (newCompletelist[itemIndex].isCompleted === true) {
+      newCompletelist[itemIndex].isCompleted = false;
+    }
+    setTodoList(newCompletelist);}
 
   return (
     <div className="m-3">
@@ -29,7 +44,10 @@ export default function TodoList2() {
         setTodoList={setTodoList}
         submitHoldler={submitHoldler}
       />
-      <Container />
+      <Container 
+      deleteHoldler={deleteHoldler} 
+      handleCompleteItem={handleCompleteItem} 
+      />
     </div>
   );
 }

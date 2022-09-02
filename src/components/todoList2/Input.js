@@ -13,7 +13,7 @@ const Input = ({ inputHoldler, submitHoldler }) => {
       />
       <ButtonList2
         className="mr-3 p-4 bg-blue-700 text-white hover:bg-blue-500"
-        onClick={submitHoldler}
+        onClick={()=>submitHoldler(input)}
       >
         送出
       </ButtonList2>
