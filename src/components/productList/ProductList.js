@@ -9,21 +9,11 @@ export default function ProductList() {
   function fetchData(page) {
     fetch(`https://dummyjson.com/products?limit=10&skip=${page * 10}`)
       .then(async (res) => {
-        // return res.json();
-        function test() {
-          return new Promise((res) =>
-            setTimeout(() => {
-              res('hello,world');
-            }, 3000)
-          );
-        }
-        const a = await test();
-        console.log(a);
-        return a;
+        return res.json();
       })
       .then((res) => {
-        // setList(res.products);
-        // setMaxPage(res.total / res.limit);
+        setList(res.products);
+        setMaxPage(res.total / res.limit);
       });
   }
 
