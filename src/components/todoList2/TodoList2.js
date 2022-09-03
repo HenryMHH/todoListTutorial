@@ -14,7 +14,7 @@ let initialList = [
 
 export default function TodoList2() {
   const [todoList, setTodoList] = useState(initialList);
-  const ref = useRef(0);
+  const ref = useRef(6);
 
   const submitHoldler = (text, clearInputCB) => {
     setTodoList([
@@ -26,6 +26,16 @@ export default function TodoList2() {
       clearInputCB();
     }
   };
+
+  // function submitHoldler(text) {
+  //   setTodoList(
+  //     (preValue) =>
+  //       (preValue = [
+  //       ...preValue,
+  //     { id: uuid(), content: text, isCompleted: false },
+  //   ])
+  //   );
+  // };
 
   const deleteHoldler = (id) => {
     setTodoList(todoList.filter((m) => m.id !== id));

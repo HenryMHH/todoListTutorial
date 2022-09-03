@@ -8,6 +8,8 @@ const Input = ({ submitHoldler }) => {
     setInput('');
   }
 
+const Input = ({ inputHoldler, submitHoldler }) => {
+  const [input, setInput] = useState("");
   return (
     <div>
       <input
