@@ -16,13 +16,14 @@ export default function TodoList2() {
   const [todoList, setTodoList] = useState(initialList);
   const ref = useRef(0);
 
-  const submitHoldler = (text, callback) => {
+  const submitHoldler = (text, clearInputCB) => {
     setTodoList([
       ...todoList,
       { id: uuid(), content: text, isCompleted: false },
     ]);
-    if (callback) {
-      callback();
+
+    if (clearInputCB) {
+      clearInputCB();
     }
   };
 
