@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import ListContainer from './ListContainer';
-import ListHead from './ListHead';
+import Container from './Container';
+import Head from './Head';
 
 function TodoList1() {
   const [todoList, setTodoList] = useState([]);
@@ -67,8 +67,8 @@ function TodoList1() {
   return (
     <div className="flex flex-col justify-center items-center pt-10">
       <h1 className="text-3xl font-thin">TodoList</h1>
-      <ListHead onCreateItem={handleCreateItem} />
-      <ListContainer
+      <Head onCreateItem={handleCreateItem} />
+      <Container
         todoList={todoList}
         onDeleteItem={handleDeleteItem}
         onCompleteItem={handleCompleteItem}
