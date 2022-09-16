@@ -30,14 +30,14 @@ function TodoList1() {
    * 撈出了element以後，你需要把該element的元素裡面的property isCompleted從false改成true，再塞回該array。
    */
   function handleCompleteItem(id) {
-    const newCompletelist = [...todoList];
-    const itemIndex = newCompletelist.findIndex((item) => item.id === id); // 用id撈出index
-    if (newCompletelist[itemIndex].isCompleted === false) {
-      newCompletelist[itemIndex].isCompleted = true;
-    } else if (newCompletelist[itemIndex].isCompleted === true) {
-      newCompletelist[itemIndex].isCompleted = false;
+    const newCompleteList = [...todoList];
+    const itemIndex = newCompleteList.findIndex((item) => item.id === id); // 用id撈出index
+    if (newCompleteList[itemIndex].isCompleted === false) {
+      newCompleteList[itemIndex].isCompleted = true;
+    } else if (newCompleteList[itemIndex].isCompleted === true) {
+      newCompleteList[itemIndex].isCompleted = false;
     }
-    setTodoList(newCompletelist); // 再把我們修改好的array存回hook
+    setTodoList(newCompleteList); // 再把我們修改好的array存回hook
     /**
      * TODO: 你會需要在todoList裡面新增一個屬性控制該item在render的時候需不需要加上line-through的className
      *
