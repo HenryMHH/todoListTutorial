@@ -1,5 +1,6 @@
+import { useReducer } from 'react';
 import { createContext, useEffect, useRef, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { reducer } from '../../reducer';
 import Container from './Container';
 import Head from './Head';
 
@@ -8,23 +9,21 @@ const { Provider } = todoList1Context;
 
 function TodoList1() {
   const [todoList, setTodoList] = useState([]);
+  const initialList = [];
+  const [list, dispatch] = useReducer(reducer, initialList);
+
   const ref = useRef(0);
 
   function handleCreateItem(text) {
-    setTodoList(
-      (preValue) =>
-        (preValue = [
-          ...preValue,
-          { id: uuid(), message: text, isCompleted: false },
-        ])
-    );
+    dispatch({ type: 'CREATE', payload: { message: text } });
   }
 
   function handleDeleteItem(id) {
-    const newList = todoList.slice(0);
-    const index = newList.findIndex((item) => item.id === id);
-    newList.splice(index, 1);
-    setTodoList(newList);
+    dispatch({ type: 'DELETE', payload: { id: id } });
+  }
+
+  function handleUpdateItem(id, newMessage) {
+    dispatch({ type: 'UPDATE', payload: { id: id, message: newMessage } });
   }
 
   /**
@@ -55,14 +54,6 @@ function TodoList1() {
      */
   }
 
-  function handleUpdateItem(id, newMessage) {
-    const newTodoList = [...todoList];
-    const index = newTodoList.findIndex((item) => item.id === id);
-    newTodoList[index].message = newMessage;
-
-    setTodoList(newTodoList);
-  }
-
   useEffect(() => {
     if (todoList.length === 0) return;
     if (todoList.length > ref.current) {
@@ -82,7 +73,7 @@ function TodoList1() {
       <h1 className="text-3xl font-thin">TodoList</h1>
       <Provider value={obj}>
         <Head onCreateItem={handleCreateItem} />
-        <Container todoList={todoList} />
+        <Container todoList={list} />
       </Provider>
     </div>
   );
