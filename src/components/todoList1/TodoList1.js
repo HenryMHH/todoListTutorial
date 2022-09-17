@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import Container from './Container';
 import Head from './Head';
+
+export const todoList1Context = createContext();
+const { Provider } = todoList1Context;
 
 function TodoList1() {
   const [todoList, setTodoList] = useState([]);
@@ -52,6 +55,14 @@ function TodoList1() {
      */
   }
 
+  function handleUpdateItem(id, newMessage) {
+    const newTodoList = [...todoList];
+    const index = newTodoList.findIndex((item) => item.id === id);
+    newTodoList[index].message = newMessage;
+
+    setTodoList(newTodoList);
+  }
+
   useEffect(() => {
     if (todoList.length === 0) return;
     if (todoList.length > ref.current) {
@@ -64,15 +75,15 @@ function TodoList1() {
     ref.current = todoList.length;
   }, [todoList]);
 
+  const obj = { handleCompleteItem, handleDeleteItem, handleUpdateItem };
+
   return (
     <div className="flex flex-col justify-center items-center pt-10">
       <h1 className="text-3xl font-thin">TodoList</h1>
-      <Head onCreateItem={handleCreateItem} />
-      <Container
-        todoList={todoList}
-        onDeleteItem={handleDeleteItem}
-        onCompleteItem={handleCompleteItem}
-      />
+      <Provider value={obj}>
+        <Head onCreateItem={handleCreateItem} />
+        <Container todoList={todoList} />
+      </Provider>
     </div>
   );
 }
