@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import { createContext, useEffect, useRef, useState } from 'react';
+import { addItem, getList } from '../../api/todoList';
 import { reducer } from '../../reducer';
 import Container from './Container';
 import Head from './Head';
@@ -14,8 +15,9 @@ function TodoList1() {
 
   const ref = useRef(0);
 
-  function handleCreateItem(text) {
-    dispatch({ type: 'CREATE', payload: { message: text } });
+  async function handleCreateItem(text) {
+    const newDocId = await addItem(text);
+    dispatch({ type: 'CREATE', payload: { id: newDocId, message: text } });
   }
 
   function handleDeleteItem(id) {
@@ -25,6 +27,15 @@ function TodoList1() {
   function handleUpdateItem(id, newMessage) {
     dispatch({ type: 'UPDATE', payload: { id: id, message: newMessage } });
   }
+
+  async function getTodoList() {
+    const result = await getList();
+    dispatch({ type: 'UPDATE_LIST', payload: { list: result } });
+  }
+
+  useEffect(() => {
+    getTodoList();
+  }, []);
 
   /**
    * 我們有一個todoList array = [{id: 'id', message: 'wish dishes', isCompleted: false},....]
