@@ -31,8 +31,8 @@ export async function addItem(message) {
   return result.id;
 }
 
-export async function deleteItem(item) {
-  const col = collection(db, 'todoList',item.id);
+export async function deleteItem(id) {
+  const col = collection(db, 'todoList',`${id}`);
   const result = await deleteDoc(col);
   return result;
 }

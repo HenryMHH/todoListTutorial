@@ -20,9 +20,9 @@ function TodoList1() {
     dispatch({ type: 'CREATE', payload: { id: newDocId, message: text } });
   }
 
-  async function handleDeleteItem(item) {
-    const currentDoc = await deleteItem(item)
-    dispatch({ type: 'DELETE', payload: { item: currentDoc } });
+  async function handleDeleteItem(id) {
+    const currentDocId = await deleteItem(id)
+    dispatch({ type: 'DELETE', payload: { id: currentDocId } });
   }
 
   function handleUpdateItem(id, newMessage) {
