@@ -4,10 +4,11 @@ import {
   setDoc,
   deleteDoc,
   addDoc,
-} from 'firebase/firestore';
+  doc,
+} from "firebase/firestore";
 
 // initialized db
-import { db } from '../firebase';
+import { db } from "../firebase";
 
 /**
  * firebase v9 document操作的參考文章:
@@ -15,7 +16,7 @@ import { db } from '../firebase';
  */
 
 export async function getList() {
-  const col = collection(db, 'todoList'); // 從initialized db中，建立你要操作的collection reference
+  const col = collection(db, "todoList"); // 從initialized db中，建立你要操作的collection reference
   const list = await getDocs(col); // 從這個collection中取回"所有"document
 
   // 將取回的docs整理成我們需要的格式，其中item.data() 是每一個element的資料
@@ -26,17 +27,16 @@ export async function getList() {
 }
 
 export async function addItem(message) {
-  const col = collection(db, 'todoList');
+  const col = collection(db, "todoList");
   const result = await addDoc(col, { message: message });
   return result.id;
 }
 
 export async function deleteItem(id) {
-  const col = collection(db, 'todoList',`${id}`);
-  const result = await deleteDoc(col);
+  const docRef = doc(db, "todoList", `${id}`);
+  const result = await deleteDoc(docRef);
   return result;
 }
-
 
 /**
  * setDoc <= { merge: true }
