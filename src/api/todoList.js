@@ -31,6 +31,13 @@ export async function addItem(message) {
   return result.id;
 }
 
+export async function deleteItem(item) {
+  const col = collection(db, 'todoList',item.id);
+  const result = await deleteDoc(col);
+  return result;
+}
+
+
 /**
  * setDoc <= { merge: true }
  *
