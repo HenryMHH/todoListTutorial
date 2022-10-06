@@ -41,7 +41,7 @@ export async function deleteItem(id) {
 
 export async function updateItem(id,newContent) {
   const docRef = doc(db, "todoList", `${id}`);
-  const result = await setDoc(docRef,newContent);
+  const result = await setDoc(docRef,newContent,{ merge:true });
   return result;
 }
 
