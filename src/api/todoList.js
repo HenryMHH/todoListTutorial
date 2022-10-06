@@ -5,6 +5,7 @@ import {
   deleteDoc,
   addDoc,
   doc,
+  updateDoc
 } from "firebase/firestore";
 
 // initialized db
@@ -35,6 +36,12 @@ export async function addItem(message) {
 export async function deleteItem(id) {
   const docRef = doc(db, "todoList", `${id}`);
   const result = await deleteDoc(docRef);
+  return result;
+}
+
+export async function updateItem(id,newContent) {
+  const docRef = doc(db, "todoList", `${id}`);
+  const result = await setDoc(docRef,newContent);
   return result;
 }
 

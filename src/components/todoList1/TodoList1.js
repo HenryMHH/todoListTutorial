@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { createContext, useEffect, useRef, useState } from "react";
-import { addItem, deleteItem, getList } from "../../api/todoList";
+import { addItem, deleteItem, getList,updateItem } from "../../api/todoList";
 import { reducer } from "../../reducer";
 import Container from "./Container";
 import Head from "./Head";
@@ -25,7 +25,8 @@ function TodoList1() {
     dispatch({ type: "DELETE", payload: { id: id } });
   }
 
-  function handleUpdateItem(id, newMessage) {
+  async function handleUpdateItem(id, newMessage) {
+    await updateItem(id,{message: newMessage})
     dispatch({ type: "UPDATE", payload: { id: id, message: newMessage } });
   }
 
