@@ -1,9 +1,9 @@
-import { useReducer } from 'react';
-import { createContext, useEffect, useRef, useState } from 'react';
-import { addItem, getList } from '../../api/todoList';
-import { reducer } from '../../reducer';
-import Container from './Container';
-import Head from './Head';
+import { useReducer } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
+import { addItem, deleteItem, getList,updateItem } from "../../api/todoList";
+import { reducer } from "../../reducer";
+import Container from "./Container";
+import Head from "./Head";
 
 export const todoList1Context = createContext();
 const { Provider } = todoList1Context;
@@ -17,20 +17,22 @@ function TodoList1() {
 
   async function handleCreateItem(text) {
     const newDocId = await addItem(text);
-    dispatch({ type: 'CREATE', payload: { id: newDocId, message: text } });
+    dispatch({ type: "CREATE", payload: { id: newDocId, message: text } });
   }
 
-  function handleDeleteItem(id) {
-    dispatch({ type: 'DELETE', payload: { id: id } });
+  async function handleDeleteItem(id) {
+    await deleteItem(id);
+    dispatch({ type: "DELETE", payload: { id: id } });
   }
 
-  function handleUpdateItem(id, newMessage) {
-    dispatch({ type: 'UPDATE', payload: { id: id, message: newMessage } });
+  async function handleUpdateItem(id, newMessage) {
+    await updateItem(id,{message: newMessage})
+    dispatch({ type: "UPDATE", payload: { id: id, message: newMessage } });
   }
 
   async function getTodoList() {
     const result = await getList();
-    dispatch({ type: 'UPDATE_LIST', payload: { list: result } });
+    dispatch({ type: "UPDATE_LIST", payload: { list: result } });
   }
 
   useEffect(() => {
@@ -68,10 +70,10 @@ function TodoList1() {
   useEffect(() => {
     if (todoList.length === 0) return;
     if (todoList.length > ref.current) {
-      alert('新增成功');
+      alert("新增成功");
     }
     if (todoList.length < ref.current) {
-      alert('刪除成功');
+      alert("刪除成功");
     }
 
     ref.current = todoList.length;

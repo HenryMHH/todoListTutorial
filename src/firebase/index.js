@@ -6,12 +6,13 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyBHS0h3_r_6j8x8dTc4IFxHx7L6FoeRj9k',
-  authDomain: 'my-app-fd0b7.firebaseapp.com',
-  projectId: 'my-app-fd0b7',
-  storageBucket: 'my-app-fd0b7.appspot.com',
-  messagingSenderId: '9881800744',
-  appId: '1:9881800744:web:5b1934a99893374a55e51d',
+  apiKey: "AIzaSyCVSktJTK8XjFl9AvuFK6iK7RTnf6PsiO4",
+  authDomain: "cobalt-broker-298003.firebaseapp.com",
+  projectId: "cobalt-broker-298003",
+  storageBucket: "cobalt-broker-298003.appspot.com",
+  messagingSenderId: "599622902192",
+  appId: "1:599622902192:web:cb538a60d2eb508dfc7675",
+  measurementId: "G-QY0K67LGBW"
 };
 
 // Initialize Firebase
